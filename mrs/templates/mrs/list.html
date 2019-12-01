@@ -58,7 +58,36 @@
     </div>
     </header>
 
-	
+	<h3> Medicine's details- </h3>
+	<br>
+	<table class="table table-bordered">
+		<thead class="thead-light">
+		    <tr>
+		        <th>Name</th>
+		        <th>Price</th>
+		        <th>Contributor</th>
+		        <th>Phone</th>
+		        <th>Date</th>
+			<th>Address</th>
+		    </tr>
+		</thead>
+
+		
+
+		<tbody>
+		    {% for med in data %}
+		        <tr>
+		            <td>{{ med.name }}</td>
+		            <td>{{ med.price }}</td>
+		            <td>{{ med.user_name }}</td>
+		            <td>{{ med.phone }}</td>
+		            <td>{{ med.date }}</td>
+			    <td>{{ med.address }}</td>
+		        </tr>
+		    {% endfor %}
+
+		</tbody>
+	    </table>
         <hr> <!-- For a horizontal line -->
 
 

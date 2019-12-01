@@ -6,19 +6,21 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from django.template import RequestContext
 
 # Create your views here.
 
 def home(request):
 	if request.method == 'POST':
-		form = nameForm(request.POST)
-		if form.is_valid():
-			obj = form.save(commit=False)
-			data = Med.objects.get(name=obj.name)
-			return redirect('list.html', name=data.name)
+		name = request.POST['name']
+		data = Med.objects.get(name=name)
+		if not data:
+			return render(request, 'mrs/index.html', {},RequestContext(request))
+		else:
+			print(data.name)
+			return redirect('list.html')
 	else:
-		form = nameForm()
-		return render(request, 'mrs/index.html', {'form':form})
+		return render(request, 'mrs/index.html', {},RequestContext(request))
 
 def map(request):
 	return render(request, 'mrs/map.html', {})
@@ -43,8 +45,8 @@ def form(request):
 		form = MedForm()
 		return render(request, 'mrs/form.html', {'form':form})
 
-def list(request,name):
-	data = Med.objects.get(name=name)
+def list(request):
+	data = Med.objects.all()
 	return render(request, 'mrs/list.html', {'data':data})
 
 

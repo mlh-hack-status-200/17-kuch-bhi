@@ -10,8 +10,9 @@ class Med(models.Model):
 	
 	name = models.CharField(max_length=200)
 	price = models.IntegerField()
-	phone = models.CharField(max_length=12)
 	user_name = models.CharField(max_length=300)
+	phone = models.CharField(max_length=12)
+	
 	date = models.DateTimeField(default = get_default_my_time)
 	address = models.CharField(max_length = 1000, default = 'Ghaziabad - Meerut Highway, NH-58, Ghaziabad, Uttar Pradesh 201206, India')
 	
